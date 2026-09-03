@@ -16,7 +16,7 @@
     --olive:#90a64a;--plum:#6e2e5e;--mauve:#935376;
     --paper:#ffffff;--ink-soft:#5b5560;--rule:#d8d3d8;
     /* section accent slots */
-    --kelp:#6e2e5e;--tide:#935376;--violet:#c04a83;--amber:#447c7c;--coral:#24474a;
+    --group:#71862c;--solo:#24474a;--kelp:#6e2e5e;--tide:#935376;--violet:#c04a83;--amber:#447c7c;--coral:#24474a;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:#e3dde3;color:var(--ink);
@@ -32,6 +32,8 @@
     line-height:.98;margin:0 0 10px;letter-spacing:-2px}
   .head .who{font-family:'Space Mono',monospace;font-size:13px;color:var(--ink-soft);margin:18px 0 0}
   .head .lede{margin:14px 0 0;max-width:62ch;font-size:16.5px;line-height:1.5}
+  .head .topnote{margin:16px 0 0;max-width:62ch;font-size:14.5px;line-height:1.5;
+    color:var(--ink-soft);border-left:5px solid var(--olive);padding-left:14px}
   .head .site{margin:12px 0 0;font-size:12.5px;line-height:1.8;font-family:'Space Mono',monospace}
   .head .site a{color:var(--pink-deep)}
 
@@ -85,9 +87,6 @@
   .entry .steps span{font-size:13.5px;color:var(--ink-soft);line-height:1.45}
 
 
-  /* ---- lecture ---- */
-  .phase-key{margin-top:18px;font-size:13.5px;color:var(--ink-soft);
-    border-left:5px solid var(--olive);padding-left:14px;max-width:62ch}
 
   footer{margin-top:40px;padding-top:16px;border-top:3px solid var(--ink);
     font-family:'Space Mono',monospace;font-size:12px;color:var(--ink-soft);
@@ -121,7 +120,6 @@
     .sheet{max-width:none;margin:0;padding:0;box-shadow:none;background:#fff}
     .contents{background:none}
     section{page-break-before:auto;break-inside:auto}
-    .lecture{page-break-before:always}
     .head h1{font-size:38px}
     .entry img{max-height:2.6in}
     .entry h3 a, .sec-head h2 a{text-decoration:none}
@@ -186,6 +184,8 @@
     <p class="lede">This is an overview of what I am implementing in my class this semester. I am
       basing some of this on the ACUE structure that I learned about through training. See the link
       below.</p>
+    <p class="topnote">All assignments live in Canvas and in the class Google Drive. The course
+      website is for the other work students do together.</p>
     <p class="who">Sarah Buckius · ART 104 · San José State University · Fall 2026</p>
     <p class="site">Course site: <a href="https://sbuckius.github.io/art104-fall2026-buckius/">sbuckius.github.io/art104-fall2026-buckius</a><br>
       ACUE training: <a href="https://acue.instructure.com/courses/5585">acue.instructure.com/courses/5585</a><br>
@@ -200,24 +200,6 @@
 
   <div id="body"></div>
 
-  <section class="lecture" id="lecture">
-    <div class="sec-head">
-      <svg viewBox="0 0 34 46" fill="none" stroke="#447c7c" stroke-width="1.6" stroke-linecap="round">
-        <path d="M17 45V16"/><path d="M17 30c-6-2-9-7-9-13 6 1 9 6 9 13z"/>
-        <path d="M17 24c6-2 9-8 9-14-6 1-9 7-9 14z"/><circle cx="17" cy="11" r="4"/>
-      </svg>
-      <h2><a href="images/lecture_1.pdf" style="color:var(--amber)" target="_blank" rel="noopener">A sample lecture</a></h2>
-      <span class="count">One full session</span>
-    </div>
-    <p class="sec-note">One session as students see it. The deck moves through parts of the same
-      engage, listen, deepen framework, so it carries the shape of the class and nobody has to guess
-      where we are in the hour.</p>
-
-
-    <p class="phase-key">Every session moves through the same five parts, so the deck is
-      predictable even when the content is not: engage, then take in material together, then push
-      the thinking, then make and reflect, then close on something students carry out with them.</p>
-  </section>
 
   <footer>
     <span>Sarah Buckius · Lecturer, Digital Media Arts, SJSU</span>
@@ -233,6 +215,8 @@ const MOTIF = {
   kelp:'<path d="M17 45V10"/><path d="M17 34c-7-1-10-6-10-12 7 1 10 5 10 12z"/><path d="M17 24c7-1 10-6 10-12-7 1-10 5-10 12z"/>',
   tide:'<path d="M17 45V22"/><path d="M17 22c-8 0-13-6-13-14 8 0 13 6 13 14z"/><path d="M17 22c8 0 13-6 13-14-8 0-13 6-13 14z"/><path d="M17 22V8"/>',
   violet:'<circle cx="17" cy="30" r="7"/><path d="M17 23V9M10 26 4 14M24 26l6-12M12 36 6 44M22 36l6 8"/>',
+  solo:'<path d="M17 45V12"/><path d="M17 30c-5-1-8-5-8-10 5 1 8 5 8 10z"/><path d="M17 24c5-1 8-6 8-11-5 1-8 6-8 11z"/><circle cx="17" cy="9" r="3"/>',
+  group:'<path d="M6 45V28M17 45V18M28 45V30"/><path d="M6 32c-3-2-4-6-4-9 3 1 4 5 4 9zM6 30c3-2 4-6 4-9-3 1-4 5-4 9z"/><path d="M17 26c-4-2-6-7-6-11 4 1 6 6 6 11zM17 22c4-2 6-8 6-12-4 1-6 7-6 12z"/><path d="M28 34c-3-2-4-5-4-8 3 1 4 4 4 8z"/>',
   assign:'<path d="M17 45V24"/><path d="M17 24 6 12M17 24l11-12M17 30 9 24M17 30l8-6"/><path d="M6 12a5 5 0 1 1 5-5M28 12a5 5 0 1 0-5-5"/>',
   amber:'<path d="M17 45V16"/><path d="M17 30c-6-2-9-7-9-13 6 1 9 6 9 13z"/><path d="M17 24c6-2 9-8 9-14-6 1-9 7-9 14z"/><circle cx="17" cy="11" r="4"/>',
   coral:'<path d="M8 45V20a5 5 0 0 1 10 0v25"/><path d="M20 45V26a4 4 0 0 1 8 0v19"/><path d="M8 20h10M20 26h8"/>'
@@ -241,10 +225,15 @@ const BEDS = [
   { name:"Where it all lives", key:"coral", color:"var(--coral)", items:[
     { t:"ART 104 course website", d:"Everything above, gathered in one place for students.",
       u:"https://sbuckius.github.io/art104-fall2026-buckius/" },
+    { t:"Class web tools", u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/class-web-tools.html",
+      d:"The one page students open during class — timer, discussion boards, word collage, and the rest, all in one place." },
     { t:"Mental Health First Aid qualified",
       d:"Certified this year, so I can recognize when a student needs more than a class accommodation and point them somewhere real." }
   ]},
   { name:"Team-building & community", key:"kelp", color:"var(--kelp)", items:[
+    { t:"Sharing contact info",
+      d:"Groups fill in a shared contact chart so nobody is stuck waiting on one unreachable person.",
+      img:"images/info_contacts.png" },
     { t:"Course contract",
       d:"We write the terms of the class together, and the agreement lives on the course site all semester.",
       u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/class-contract-fall2026-buckius.html" },
@@ -258,44 +247,58 @@ const BEDS = [
     { t:"Artist introduction sites",
       d:"Everyone builds a small page introducing themselves and their work, and the class site collects them.",
       u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/artist_introductions/artist-introductions.html" },
-    { t:"Low-stakes group projects",
-      d:"Short collaborative builds — like this zine — where the grade never rides on one outcome.",
-      img:"images/zine_example.png" },
-    { t:"Very short presentations",
-      d:"Brief talks with real preparation behind them, so sharing stays quick but never improvised.",
-      img:"images/presentation-example.png" },
-    { t:"Brainstorming chart",
-      d:"A chart that gives groups somewhere to put every idea before they start choosing.",
-      img:"images/brainstorming_chart1.png" },
-    { t:"Check-in groups",
-      d:"Standing groups that meet to report progress and notice who needs help.",
-      img:"images/checkin-groups.png" },
     { t:"Warm-up question tool",
       d:"The opening question that starts each session and gets voices in the room early.",
       u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/opening-questions.html" },
     { t:"Getting to know you survey", u:"images/getting-to-know-you.pdf",
       d:"A first-week survey that tells me what students bring with them and what they need from me.",
-      img:"images/getting_to_know_you.png" },
-    { t:"Sharing contact info",
-      d:"Groups fill in a shared contact chart so nobody is stuck waiting on one unreachable person.",
-      img:"images/info_contacts.png" },
+      img:"images/getting_to_know_you.png" }
+  ]},
+  { name:"Group work", key:"group", color:"var(--group)", items:[
+    { t:"In-class group assignment", u:"images/inclass-assignment.pdf",
+      d:"Groups take one prompt from the week's theme, move through the same five parts together during the studio hour, and show what they made before we log off." },
+    { t:"Class zine on zine.baby", d:"A zine the class builds and publishes together — the shared object that comes out of all this group work.",
+      u:"https://zine.baby/" },
+    { t:"Low-stakes group projects",
+      d:"Short collaborative builds — like this zine — where the grade never rides on one outcome.",
+      img:"images/zine_example.png" },
+    { t:"Brainstorming chart",
+      d:"A chart that gives groups somewhere to put every idea before they start choosing.",
+      img:"images/brainstorming_chart1.png" },
+    { t:"Riff Room", u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/riff-room.html",
+      d:"A four-phase Yes And board groups work through across the week — riff, sort, decide, brief — where ideas are cards anyone can move, build on, or bring in from their own space." },
+    { t:"Check-in groups",
+      d:"Standing groups that meet to report progress and notice who needs help.",
+      img:"images/checkin-groups.png" },
     { t:"Group project tracking sheet",
       d:"The live sheet where groups keep roles, tasks, and progress visible to each other and to me.",
       img:"images/group-project-sheet.png" }
   ]},
-  { name:"Discussion tools", key:"tide", color:"var(--tide)", items:[
+  { name:"Interactive group discussion", key:"tide", color:"var(--tide)", items:[
+    { t:"Sample lecture", u:"images/lecture_1.pdf",
+      d:"One session as students see it — the deck moves through parts of the same engage, listen, deepen framework, so it carries the shape of the class." },
     { t:"Warm-up questions", d:"The opening question board, run at the top of class.",
       u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/opening-questions.html" },
-    { t:"Theme overview", d:"A word and phrase collage the class builds around the week's theme.",
-      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/discussions/theme-overview.html" },
     { t:"Full class discussion", d:"The whole class works one board and each person answers one or more questions.",
       u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/discussions/class-discussion.html" },
     { t:"Breakout group discussion", d:"Each breakout group gets its own question, then brings an answer back to everyone.",
       u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/discussions/group-discussion.html" },
     { t:"Live presentation comments", d:"Students comment on each other's presentations while they happen, so feedback lands the same day.",
       u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/discussions/presentation-comments.html" },
+    { t:"Very short presentations",
+      d:"Brief talks with real preparation behind them, so sharing stays quick but never improvised.",
+      img:"images/presentation-example.png" },
     { t:"What I learned or remember", d:"A closing recall board — one thing you learned, one thing you remember.",
-      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/discussions/what_i_learned_or_remember.html" }
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/discussions/what_i_learned_or_remember.html" },
+    { t:"Theme overview", d:"A word and phrase collage the class builds around the week's theme.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/discussions/theme-overview.html" }
+  ]},
+  { name:"Individual work", key:"solo", color:"var(--solo)",
+    note:"Where students deepen their own thinking before and after we meet — preparing something to say, and naming what stayed with them.", items:[
+    { t:"Assignment 1", u:"images/assignment_1.pdf" },
+    { t:"Written reflection",
+      d:"A short written response students work through on their own, where the week's reading and looking turns into their own position.",
+      img:"images/written-reflection.png" }
   ]},
   { name:"Digital team building", key:"violet", color:"var(--violet)", items:[
     { t:"Artist introductions", d:"The gallery of student introduction pages, used as a warm-up and as a directory all term.",
@@ -314,12 +317,6 @@ const BEDS = [
     { t:"3. Deepen thinking", d:"Discussion and analysis, where students push the ideas past a first reaction." },
     { t:"4. Practice & reflect", d:"Hands-on making or writing, then a moment to name what just happened." },
     { t:"5. Close strong", d:"An ending that gathers the session — recall, share-out, or a stated next step." }
-  ]},
-  { name:"Sample assignments", key:"assign", color:"var(--amber)",
-    note:"These move through parts of the engage, listen, deepen framework — the take-home assignment and the group work we do in the room both do.", items:[
-    { t:"Assignment 1", u:"images/assignment_1.pdf" },
-    { t:"In-class group assignment", u:"images/inclass-assignment.pdf",
-      d:"Groups take one prompt from the week's theme, move through the same five parts together during the studio hour, and show what they made before we log off." }
   ]}
 ];
 
@@ -356,7 +353,6 @@ BEDS.forEach((bed, bi) => {
   });
   out += '</section>';
 });
-toc += '<li><a href="#lecture">A sample lecture</a></li>';
 document.getElementById('toc').innerHTML = toc;
 document.getElementById('body').innerHTML = out;
 
