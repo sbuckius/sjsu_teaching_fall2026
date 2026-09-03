@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ART104 Overview · Sarah Buckius</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* course palette */
+    --pink:#d8689d;--pink-deep:#6e2e5e;--mint:#90a64a;--sea:#935376;
+    --teal:#447c7c;--grass:#24474a;--ink:#172029;--cream:#ffffff;
+    /* print-safe darkenings of sea and grass, for text on cream */
+    --olive:#90a64a;--plum:#6e2e5e;--mauve:#935376;
+    --paper:#ffffff;--ink-soft:#5b5560;--rule:#d8d3d8;
+    /* section accent slots */
+    --kelp:#6e2e5e;--tide:#935376;--violet:#c04a83;--amber:#447c7c;--coral:#24474a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e3dde3;color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:15px;line-height:1.55;}
+  .sheet{max-width:8.5in;margin:24px auto;background:var(--paper);
+    padding:0.85in 0.9in 1in;box-shadow:0 14px 40px rgba(23,32,41,.22);}
+
+  /* ---- masthead ---- */
+  .head{border-bottom:3px solid var(--ink);padding-bottom:20px}
+  .head .eyebrow{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:3px;
+    text-transform:uppercase;color:var(--mauve);margin-bottom:14px}
+  .head h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:46px;
+    line-height:.98;margin:0 0 10px;letter-spacing:-2px}
+  .head .who{font-family:'Space Mono',monospace;font-size:13px;color:var(--ink-soft);margin:18px 0 0}
+  .head .lede{margin:14px 0 0;max-width:62ch;font-size:16.5px;line-height:1.5}
+  .head .site{margin:12px 0 0;font-size:12.5px;line-height:1.8;font-family:'Space Mono',monospace}
+  .head .site a{color:var(--pink-deep)}
+
+  /* ---- contents ---- */
+  .contents{margin:26px 0 10px;padding:18px 20px;border-left:5px solid var(--olive);
+    background:#faf3f7}
+  .contents h2{font-family:'Space Grotesk',sans-serif;font-size:17px;margin:0 0 10px;font-weight:600}
+  .contents .key{font-size:13px;color:var(--ink-soft);margin:0 0 12px}
+  .contents ol{margin:0;padding-left:20px;columns:2;column-gap:34px;font-size:14px}
+  .contents li{margin-bottom:5px;break-inside:avoid}
+  .contents a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+  .contents a:hover{border-color:var(--olive)}
+
+  /* ---- sections ---- */
+  section{margin-top:38px}
+  .sec-head{display:flex;align-items:flex-end;gap:12px;
+    border-bottom:1px solid var(--rule);padding-bottom:8px;margin-bottom:6px}
+  .sec-head svg{flex:none;width:34px;height:46px}
+  .sec-head h2{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;
+    margin:0;line-height:1.05;letter-spacing:-.8px}
+  .sec-head .count{margin-left:auto;font-family:'Space Mono',monospace;font-size:11.5px;
+    letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+  .sec-note{font-size:14px;color:var(--ink-soft);margin:8px 0 0;max-width:62ch}
+
+  .entry{display:grid;grid-template-columns:36px 1fr;gap:14px;padding:16px 0;
+    border-bottom:1px solid var(--rule);break-inside:avoid;page-break-inside:avoid}
+  .entry .num{font-family:'Space Mono',monospace;font-weight:700;font-size:15px;
+    line-height:1.6;color:var(--pink-deep)}
+  .entry h3{margin:0 0 4px;font-family:'Space Grotesk',sans-serif;font-size:18px;
+    font-weight:600;line-height:1.22;letter-spacing:-.3px}
+  .entry p{margin:0;max-width:62ch;color:#2b333b}
+  .entry h3 a, .sec-head h2 a{text-decoration:underline;text-decoration-thickness:2px;
+    text-underline-offset:4px}
+  .entry h3 a:hover, .sec-head h2 a:hover{background:#f6eef3;text-decoration-thickness:3px}
+  .entry h3 a:focus-visible, .sec-head h2 a:focus-visible{outline:3px solid var(--olive);
+    outline-offset:3px}
+  .entry figure{margin:11px 0 0}
+  .entry figure a{display:block}
+  .entry figure a:hover img{border-color:var(--olive)}
+  .entry img{max-width:100%;max-height:3.1in;border:1px solid var(--rule);display:block}
+  .entry .plain{font-family:'Space Mono',monospace;font-size:12px;color:var(--ink-soft);margin-top:7px}
+
+  .entry .steps{margin:13px 0 0;padding:0;list-style:none;counter-reset:s;
+    border-top:1px solid var(--rule);max-width:62ch}
+  .entry .steps li{counter-increment:s;display:grid;grid-template-columns:26px 1fr;gap:10px;
+    padding:9px 0;border-bottom:1px solid var(--rule);break-inside:avoid}
+  .entry .steps li::before{content:counter(s);font-family:'Space Mono',monospace;font-weight:700;
+    font-size:12px;color:var(--pink-deep);padding-top:3px}
+  .entry .steps b{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;
+    display:block;margin-bottom:2px}
+  .entry .steps span{font-size:13.5px;color:var(--ink-soft);line-height:1.45}
+
+
+  /* ---- lecture ---- */
+  .phase-key{margin-top:18px;font-size:13.5px;color:var(--ink-soft);
+    border-left:5px solid var(--olive);padding-left:14px;max-width:62ch}
+
+  footer{margin-top:40px;padding-top:16px;border-top:3px solid var(--ink);
+    font-family:'Space Mono',monospace;font-size:12px;color:var(--ink-soft);
+    display:flex;gap:20px;flex-wrap:wrap}
+  footer a{color:var(--teal)}
+
+  /* ---- controls (screen only) ---- */
+  .bar{position:sticky;top:0;z-index:5;background:rgba(23,32,41,.94);backdrop-filter:blur(6px);
+    color:var(--cream);padding:10px 18px;display:flex;align-items:center;gap:12px;
+    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
+  .bar .sp{flex:1}
+  .bar button,.bar a{font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;letter-spacing:0;
+    text-transform:none;padding:7px 14px;border-radius:3px;cursor:pointer;
+    border:1px solid rgba(255,255,255,.4);background:none;color:var(--cream);text-decoration:none}
+  .bar button:hover,.bar a:hover{background:rgba(255,255,255,.14)}
+  .bar .go{background:var(--mint);color:var(--ink);border-color:var(--mint);font-weight:600}
+  .bar .go:hover{background:#a3b95c}
+  .bar :focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+
+  @media (max-width:720px){
+    .sheet{padding:26px 20px 40px;margin:0}
+    .contents ol{columns:1}
+    .head h1{font-size:32px;letter-spacing:-1.2px}
+  }
+
+  /* ---- print / PDF ---- */
+  @page{ size:letter; margin:0.7in; }
+  @media print{
+    body{background:#fff}
+    .bar{display:none}
+    .sheet{max-width:none;margin:0;padding:0;box-shadow:none;background:#fff}
+    .contents{background:none}
+    section{page-break-before:auto;break-inside:auto}
+    .lecture{page-break-before:always}
+    .head h1{font-size:38px}
+    .entry img{max-height:2.6in}
+    .entry h3 a, .sec-head h2 a{text-decoration:none}
+    .entry h3 a::after, .sec-head h2 a::after{content:" — " attr(href);
+      font-family:'Space Mono',monospace;font-size:10.5px;font-weight:400;
+      color:var(--ink-soft);word-break:break-all}
+  }
+
+  /* ---------- password gate ---------- */
+  #gate{position:fixed;inset:0;z-index:100;background:var(--ink);color:var(--cream);
+    display:flex;align-items:center;justify-content:center;padding:24px}
+  body:not(.locked) #gate{display:none}
+  .gate-card{width:100%;max-width:390px;text-align:left}
+  .gate-eyebrow{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;
+    text-transform:uppercase;color:var(--mint);margin-bottom:16px}
+  #gate h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:38px;
+    letter-spacing:-1.5px;line-height:1;margin:0 0 12px;color:var(--cream)}
+  #gate p{font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;line-height:1.5;
+    color:rgba(255,255,255,.72);margin:0 0 20px;max-width:34ch}
+  #gate input{width:100%;padding:12px 14px;border-radius:3px;font-size:15px;
+    font-family:'IBM Plex Sans',sans-serif;color:var(--ink);background:var(--cream);
+    border:1px solid rgba(255,255,255,.5)}
+  #gate input:focus{outline:3px solid var(--mint);outline-offset:2px}
+  #gate button{margin-top:10px;width:100%;padding:12px 14px;border-radius:3px;cursor:pointer;
+    font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:600;
+    background:var(--mint);color:var(--ink);border:1px solid var(--mint)}
+  #gate button:hover{background:#a3b95c}
+  #gate button:focus-visible{outline:3px solid var(--cream);outline-offset:2px}
+  #gate-msg{margin:14px 0 0;min-height:20px;font-family:'Space Mono',monospace;font-size:12.5px;
+    letter-spacing:.5px;color:var(--pink-deep)}
+
+  body.locked .bar, body.locked .sheet{display:none !important}
+  @media print{ body.locked .sheet{display:none !important} }
+</style>
+</head>
+<body class="locked">
+
+
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-eyebrow">Digital Media Arts · San José State University</div>
+    <h1>ART104 Overview</h1>
+    <p>This page is shared privately. Enter the password to open it.</p>
+    <input id="gate-pw" type="password" placeholder="Password" autocomplete="current-password"
+      aria-label="Password" autofocus>
+    <button id="gate-go" type="button">Open the page</button>
+    <p id="gate-msg" role="alert"></p>
+  </div>
+</div>
+
+<div class="bar">
+  <b>ART104 Overview</b>
+  <span class="sp"></span>
+  <button class="go" onclick="window.print()">Save as PDF</button>
+</div>
+
+<div class="sheet">
+
+  <header class="head">
+    <div class="eyebrow">Digital Media Arts · San José State University · Fall 2026</div>
+    <h1>ART104 Overview</h1>
+    <p class="lede">This is an overview of what I am implementing in my class this semester. I am
+      basing some of this on the ACUE structure that I learned about through training. See the link
+      below.</p>
+    <p class="who">Sarah Buckius · ART 104 · San José State University · Fall 2026</p>
+    <p class="site">Course site: <a href="https://sbuckius.github.io/art104-fall2026-buckius/">sbuckius.github.io/art104-fall2026-buckius</a><br>
+      ACUE training: <a href="https://acue.instructure.com/courses/5585">acue.instructure.com/courses/5585</a><br>
+      Mental Health First Aid qualified</p>
+  </header>
+
+  <nav class="contents" id="contents">
+    <h2>What's inside</h2>
+    <p class="key">Titles in color open a page or file in a new tab — this overview stays where it is.</p>
+    <ol id="toc"></ol>
+  </nav>
+
+  <div id="body"></div>
+
+  <section class="lecture" id="lecture">
+    <div class="sec-head">
+      <svg viewBox="0 0 34 46" fill="none" stroke="#447c7c" stroke-width="1.6" stroke-linecap="round">
+        <path d="M17 45V16"/><path d="M17 30c-6-2-9-7-9-13 6 1 9 6 9 13z"/>
+        <path d="M17 24c6-2 9-8 9-14-6 1-9 7-9 14z"/><circle cx="17" cy="11" r="4"/>
+      </svg>
+      <h2><a href="images/lecture_1.pdf" style="color:var(--amber)" target="_blank" rel="noopener">A sample lecture</a></h2>
+      <span class="count">One full session</span>
+    </div>
+    <p class="sec-note">One session as students see it. The deck moves through parts of the same
+      engage, listen, deepen framework, so it carries the shape of the class and nobody has to guess
+      where we are in the hour.</p>
+
+
+    <p class="phase-key">Every session moves through the same five parts, so the deck is
+      predictable even when the content is not: engage, then take in material together, then push
+      the thinking, then make and reflect, then close on something students carry out with them.</p>
+  </section>
+
+  <footer>
+    <span>Sarah Buckius · Lecturer, Digital Media Arts, SJSU</span>
+    <span><a href="https://sbuckius.github.io/art104-fall2026-buckius/">Course site</a></span>
+    <span><a href="https://care-tech.org">care-tech.org</a></span>
+  </footer>
+
+</div>
+
+<script>
+/* ===== content — same source as the 3D garden ===== */
+const MOTIF = {
+  kelp:'<path d="M17 45V10"/><path d="M17 34c-7-1-10-6-10-12 7 1 10 5 10 12z"/><path d="M17 24c7-1 10-6 10-12-7 1-10 5-10 12z"/>',
+  tide:'<path d="M17 45V22"/><path d="M17 22c-8 0-13-6-13-14 8 0 13 6 13 14z"/><path d="M17 22c8 0 13-6 13-14-8 0-13 6-13 14z"/><path d="M17 22V8"/>',
+  violet:'<circle cx="17" cy="30" r="7"/><path d="M17 23V9M10 26 4 14M24 26l6-12M12 36 6 44M22 36l6 8"/>',
+  assign:'<path d="M17 45V24"/><path d="M17 24 6 12M17 24l11-12M17 30 9 24M17 30l8-6"/><path d="M6 12a5 5 0 1 1 5-5M28 12a5 5 0 1 0-5-5"/>',
+  amber:'<path d="M17 45V16"/><path d="M17 30c-6-2-9-7-9-13 6 1 9 6 9 13z"/><path d="M17 24c6-2 9-8 9-14-6 1-9 7-9 14z"/><circle cx="17" cy="11" r="4"/>',
+  coral:'<path d="M8 45V20a5 5 0 0 1 10 0v25"/><path d="M20 45V26a4 4 0 0 1 8 0v19"/><path d="M8 20h10M20 26h8"/>'
+};
+const BEDS = [
+  { name:"Where it all lives", key:"coral", color:"var(--coral)", items:[
+    { t:"ART 104 course website", d:"Everything above, gathered in one place for students.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/" },
+    { t:"Mental Health First Aid qualified",
+      d:"Certified this year, so I can recognize when a student needs more than a class accommodation and point them somewhere real." }
+  ]},
+  { name:"Team-building & community", key:"kelp", color:"var(--kelp)", items:[
+    { t:"Course contract",
+      d:"We write the terms of the class together, and the agreement lives on the course site all semester.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/class-contract-fall2026-buckius.html" },
+    { t:"Revisiting the contract",
+      d:"Partway through the term we reread the ideas in the contract and check what is actually holding up." },
+    { t:"Discussions after class",
+      d:"A Canvas assignment where small groups keep talking after we log off.",
+      img:"images/after_class_group_discussions.png", note:"Assignment in Canvas" },
+    { t:"Discord",
+      d:"A student-run channel for their own conversations. I don't post there — it belongs to them." },
+    { t:"Artist introduction sites",
+      d:"Everyone builds a small page introducing themselves and their work, and the class site collects them.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/artist_introductions/artist-introductions.html" },
+    { t:"Low-stakes group projects",
+      d:"Short collaborative builds — like this zine — where the grade never rides on one outcome.",
+      img:"images/zine_example.png" },
+    { t:"Very short presentations",
+      d:"Brief talks with real preparation behind them, so sharing stays quick but never improvised.",
+      img:"images/presentation-example.png" },
+    { t:"Brainstorming chart",
+      d:"A chart that gives groups somewhere to put every idea before they start choosing.",
+      img:"images/brainstorming_chart1.png" },
+    { t:"Check-in groups",
+      d:"Standing groups that meet to report progress and notice who needs help.",
+      img:"images/checkin-groups.png" },
+    { t:"Warm-up question tool",
+      d:"The opening question that starts each session and gets voices in the room early.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/opening-questions.html" },
+    { t:"Getting to know you survey", u:"images/getting-to-know-you.pdf",
+      d:"A first-week survey that tells me what students bring with them and what they need from me.",
+      img:"images/getting_to_know_you.png" },
+    { t:"Sharing contact info",
+      d:"Groups fill in a shared contact chart so nobody is stuck waiting on one unreachable person.",
+      img:"images/info_contacts.png" },
+    { t:"Group project tracking sheet",
+      d:"The live sheet where groups keep roles, tasks, and progress visible to each other and to me.",
+      img:"images/group-project-sheet.png" }
+  ]},
+  { name:"Discussion tools", key:"tide", color:"var(--tide)", items:[
+    { t:"Warm-up questions", d:"The opening question board, run at the top of class.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/opening-questions.html" },
+    { t:"Theme overview", d:"A word and phrase collage the class builds around the week's theme.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/discussions/theme-overview.html" },
+    { t:"Full class discussion", d:"The whole class works one board and each person answers one or more questions.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/discussions/class-discussion.html" },
+    { t:"Breakout group discussion", d:"Each breakout group gets its own question, then brings an answer back to everyone.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/discussions/group-discussion.html" },
+    { t:"Live presentation comments", d:"Students comment on each other's presentations while they happen, so feedback lands the same day.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/discussions/presentation-comments.html" },
+    { t:"What I learned or remember", d:"A closing recall board — one thing you learned, one thing you remember.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/discussions/what_i_learned_or_remember.html" }
+  ]},
+  { name:"Digital team building", key:"violet", color:"var(--violet)", items:[
+    { t:"Artist introductions", d:"The gallery of student introduction pages, used as a warm-up and as a directory all term.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/artist_introductions/artist-introductions.html" },
+    { t:"Class zine on zine.baby", d:"A zine the class builds and publishes together — the shared object that comes out of all this group work.",
+      u:"https://zine.baby/" },
+    { t:"Blob timer the class feeds", d:"A calm work timer students contribute to, so break time is something we make together.",
+      u:"https://sbuckius.github.io/art104-fall2026-buckius/pages/timer/blob-timer-calm.html" }
+  ]},
+  { name:"How a class session runs", key:"amber", color:"var(--amber)",
+    note:"The sections below are built into each class in different ways. Assignments and lectures each include parts of this framework, and so does the work students do in class and after it.", items:[
+    { t:"ACUE course & materials", d:"The training this structure comes from.",
+      u:"https://acue.instructure.com/courses/5585", img:"images/acue_learning.png" },
+    { t:"1. Engage", d:"Open with something that pulls people in before any content arrives — a question, an image, a two-minute task." },
+    { t:"2. Listen, watch & learn", d:"The input stretch: readings, artworks, video, short lecture." },
+    { t:"3. Deepen thinking", d:"Discussion and analysis, where students push the ideas past a first reaction." },
+    { t:"4. Practice & reflect", d:"Hands-on making or writing, then a moment to name what just happened." },
+    { t:"5. Close strong", d:"An ending that gathers the session — recall, share-out, or a stated next step." }
+  ]},
+  { name:"Sample assignments", key:"assign", color:"var(--amber)",
+    note:"These move through parts of the engage, listen, deepen framework — the take-home assignment and the group work we do in the room both do.", items:[
+    { t:"Assignment 1", u:"images/assignment_1.pdf" },
+    { t:"In-class group assignment", u:"images/inclass-assignment.pdf",
+      d:"Groups take one prompt from the week's theme, move through the same five parts together during the studio hour, and show what they made before we log off." }
+  ]}
+];
+
+
+/* ===== render ===== */
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+let n = 0, toc = '', out = '';
+
+BEDS.forEach((bed, bi) => {
+  const id = 'sec' + bi;
+  toc += '<li><a href="#'+id+'">'+esc(bed.name)+'</a></li>';
+  out += '<section id="'+id+'"><div class="sec-head">'
+      + '<svg viewBox="0 0 34 46" fill="none" stroke="'+bed.color+'" stroke-width="1.6" stroke-linecap="round">'
+      + MOTIF[bed.key] + '</svg>'
+      + '<h2>'+esc(bed.name)+'</h2>'
+      + '<span class="count">'+bed.items.length+' entries</span></div>'
+      + (bed.note ? '<p class="sec-note">'+esc(bed.note)+'</p>' : '');
+  bed.items.forEach(it => {
+    n++;
+    const href = it.u || it.img;
+    const ext = href && href !== '#' ? ' target="_blank" rel="noopener"' : '';
+    const title = href
+      ? '<a href="'+href+'" style="color:'+bed.color+'"'+ext+'>'+esc(it.t)+'</a>'
+      : esc(it.t);
+    out += '<div class="entry"><div class="num" style="color:'+bed.color+'">'
+        + String(n).padStart(2,'0') + '</div><div><h3>'+title+'</h3>'
+        + (it.d ? '<p>'+esc(it.d)+'</p>' : '')
+        + (it.steps ? '<ol class="steps">' + it.steps.map(s =>
+            '<li><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></li>').join('') + '</ol>' : '')
+        + (it.note ? '<p class="plain">'+esc(it.note)+'</p>' : '')
+        + (it.img ? '<figure><a href="'+it.img+'"><img src="'+it.img+'" alt="'+esc(it.t)
+            + '" onerror="this.closest(\'figure\').remove()"></a></figure>' : '')
+        + '</div></div>';
+  });
+  out += '</section>';
+});
+toc += '<li><a href="#lecture">A sample lecture</a></li>';
+document.getElementById('toc').innerHTML = toc;
+document.getElementById('body').innerHTML = out;
+
+</script>
+
+<script>
+/* ---------------------------------------------------------------
+   Password gate.
+   The password is stored as a SHA-256 hash, never in plain text.
+   To change it, run this in your browser console and paste the
+   result over PASS_HASH below (do it in BOTH html files):
+
+     sha256('your new password')
+
+   Note: this keeps casual visitors out. It is not real security —
+   the page content is still in the HTML source, and anything in
+   images/ can be opened directly by URL. For genuine protection,
+   host behind Netlify password protection or Cloudflare Access.
+   --------------------------------------------------------------- */
+const PASS_HASH = "d772cd54d90ed54fd699abb5a07b443d0bb2e65f88ec9754e63829a72504b3ef";
+const GATE_KEY = "art104-overview-open";
+
+function sha256(msg){
+  const K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+  0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+  0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+  0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+  0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+  0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+  0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+  0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  let H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+  const bytes=[]; for(const ch of unescape(encodeURIComponent(msg))) bytes.push(ch.charCodeAt(0));
+  const bitLen=bytes.length*8; bytes.push(0x80);
+  while(bytes.length%64!==56) bytes.push(0);
+  for(let i=7;i>=0;i--) bytes.push((bitLen/Math.pow(2,i*8))&0xff);
+  const rr=(x,n)=>(x>>>n)|(x<<(32-n));
+  for(let i=0;i<bytes.length;i+=64){
+    const w=new Array(64);
+    for(let j=0;j<16;j++) w[j]=(bytes[i+j*4]<<24)|(bytes[i+j*4+1]<<16)|(bytes[i+j*4+2]<<8)|bytes[i+j*4+3];
+    for(let j=16;j<64;j++){
+      const s0=rr(w[j-15],7)^rr(w[j-15],18)^(w[j-15]>>>3);
+      const s1=rr(w[j-2],17)^rr(w[j-2],19)^(w[j-2]>>>10);
+      w[j]=(w[j-16]+s0+w[j-7]+s1)|0;
+    }
+    let [a,b,c,d,e,f,g,h]=H;
+    for(let j=0;j<64;j++){
+      const S1=rr(e,6)^rr(e,11)^rr(e,25), ch=(e&f)^(~e&g);
+      const t1=(h+S1+ch+K[j]+w[j])|0;
+      const S0=rr(a,2)^rr(a,13)^rr(a,22), mj=(a&b)^(a&c)^(b&c);
+      const t2=(S0+mj)|0;
+      h=g;g=f;f=e;e=(d+t1)|0;d=c;c=b;b=a;a=(t1+t2)|0;
+    }
+    H=[H[0]+a|0,H[1]+b|0,H[2]+c|0,H[3]+d|0,H[4]+e|0,H[5]+f|0,H[6]+g|0,H[7]+h|0];
+  }
+  return H.map(x=>((x>>>0).toString(16).padStart(8,'0'))).join('');
+}
+
+(function(){
+  const pw = document.getElementById('gate-pw');
+  const go = document.getElementById('gate-go');
+  const msg = document.getElementById('gate-msg');
+
+  function open_(){
+    document.body.classList.remove('locked');
+    try{ sessionStorage.setItem(GATE_KEY, '1'); }catch(e){}
+    dispatchEvent(new Event('resize'));
+  }
+  function tryOpen(){
+    if(sha256(pw.value.trim()) === PASS_HASH){ open_(); }
+    else { msg.textContent = 'That password does not match. Try again.'; pw.select(); }
+  }
+  go.addEventListener('click', tryOpen);
+  pw.addEventListener('keydown', e=>{ if(e.key === 'Enter') tryOpen(); });
+  pw.addEventListener('input', ()=> msg.textContent = '');
+
+  try{ if(sessionStorage.getItem(GATE_KEY) === '1') open_(); }catch(e){}
+  if(document.body.classList.contains('locked')) pw.focus();
+})();
+</script>
+
+</body>
+</html>
